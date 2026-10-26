@@ -989,15 +989,14 @@ public class HomePane extends JRootPane implements HomeView {
     addActionToMenu(ActionType.PAGE_SETUP, fileMenu);
     addActionToMenu(ActionType.PRINT_PREVIEW, fileMenu);
     addActionToMenu(ActionType.PRINT, fileMenu);
-    // Don't add PRINT_TO_PDF, PREFERENCES and EXIT menu items under Mac OS X, 
-    // because PREFERENCES and EXIT items are displayed in application menu
-    // and PRINT_TO_PDF is available in standard Mac OS X Print dialog
+    // Offer direct PDF export on every operating system.
+    addActionToMenu(ActionType.PRINT_TO_PDF, fileMenu);
+
+    // On macOS, Preferences is already in the application menu.
     if (!OperatingSystem.isMacOSX()) {
-      addActionToMenu(ActionType.PRINT_TO_PDF, fileMenu);
       fileMenu.addSeparator();
       addActionToMenu(ActionType.PREFERENCES, fileMenu);
     }
-
     // Create Edit menu
     JMenu editMenu = new JMenu(this.menuActionMap.get(MenuActionType.EDIT_MENU));
     addActionToMenu(ActionType.UNDO, editMenu);
